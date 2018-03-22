@@ -18,10 +18,10 @@
 *.xhtml
 
 # Data files. Try not to commit data into the repo
-# data/
-# *.csv
-# *.dat
-# *.mdb
+data/
+*.csv
+*.dat
+*.mdb
 
 # Zip files that aren't read by Pandas
 *.7z
