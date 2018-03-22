@@ -1,0 +1,4 @@
+Create a new user
+
+sudo adduser srm
+sudo usermod -aG sudo srm
