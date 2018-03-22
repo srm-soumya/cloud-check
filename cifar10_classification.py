@@ -10,6 +10,7 @@ from torch.autograd import Variable
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
+gpu = True if torch.cuda.is_available() else False
 
 def timeit(method):
     '''@timeit decorator'''
@@ -60,6 +61,9 @@ def run_model(train, num_epochs=2):
 
     # Define the network
     net = Net()
+    if gpu:
+        net = net.cuda()
+
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
@@ -67,9 +71,12 @@ def run_model(train, num_epochs=2):
         running_loss = 0.0
         for i, data in enumerate(train_loader):
             inputs, labels = data
-            inputs, labels = Variable(inputs), Variable(labels)
-            optimizer.zero_grad()
+            if gpu:
+                inputs, labels = Variable(inputs.cuda()), Variable(labels.cuda())
+            else:
+                inputs, labels = Variable(inputs), Variable(labels)
 
+            optimizer.zero_grad()
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
