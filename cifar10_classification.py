@@ -100,7 +100,7 @@ def compute_results(test, net):
         imgs, labels = data
         imgs = Variable(imgs.cuda()) if gpu else Variable(imgs)
         outputs = net(imgs)
-        _, preds = torch.max(outputs.data, dim=1)
+        _, preds = torch.max(outputs.data.cpu(), dim=1)
         total += labels.size(0)
         correct += (preds == labels).sum()
 
@@ -113,7 +113,7 @@ def compute_results(test, net):
         imgs, labels = data
         imgs = Variable(imgs.cuda()) if gpu else Variable(imgs)
         outputs = net(imgs)
-        _, preds = torch.max(outputs.data, dim=1)
+        _, preds = torch.max(outputs.data.cpu(), dim=1)
         c = preds == labels
         for i in range(4):
             label = labels[i]
