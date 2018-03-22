@@ -98,7 +98,8 @@ def compute_results(test, net):
 
     for data in test_loader:
         imgs, labels = data
-        outputs = net(Variable(imgs))
+        imgs = Variable(imgs.cuda()) if gpu else Variable(imgs)
+        outputs = net(imgs)
         _, preds = torch.max(outputs.data, dim=1)
         total += labels.size(0)
         correct += (preds == labels).sum()
@@ -110,7 +111,8 @@ def compute_results(test, net):
 
     for data in test_loader:
         imgs, labels = data
-        outputs = net(Variable(imgs))
+        imgs = Variable(imgs.cuda()) if gpu else Variable(imgs)
+        outputs = net(imgs)
         _, preds = torch.max(outputs.data, dim=1)
         c = preds == labels
         for i in range(4):
