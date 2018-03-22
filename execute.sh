@@ -1,9 +1,4 @@
-Create a new user
-
-sudo adduser srm
-sudo usermod -aG sudo srm
-
-su - srm
+#!/bin/bash
 
 conda create -y -n torch python=3
 source activate torch
