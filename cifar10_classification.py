@@ -83,8 +83,8 @@ def run_model(train, num_epochs=2):
             optimizer.step()
 
             running_loss += loss.data[0]
-            if i % 6000 == 5999:
-                print(f'Epoch: {epoch+1}, Minibatch: {i+1}, Loss: {running_loss / 6000}')
+            if i % 1000 == 999:
+                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 1000}')
                 running_loss = 0.0
 
     print('Finished Training')
