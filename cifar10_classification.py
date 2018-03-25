@@ -36,28 +36,64 @@ def download_data():
     return train, test
 
 class Net(nn.Module):
-    def __init__(self):
+    def __init__(self, num_classes=10, init_weights=True):
         super().__init__()
-        self.conv1 = nn.Conv2d(3, 6, 5)
-        self.pool = nn.MaxPool2d(2,2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-        self.fc1 = nn.Linear(16 * 5 * 5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(256, 512, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(512, 512, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(512 * 7 * 7, 4096),
+            nn.ReLU(True),
+            nn.Dropout(),
+            nn.Linear(4096, 4096),
+            nn.ReLU(True),
+            nn.Dropout(),
+            nn.Linear(4096, num_classes),
+        )
+        if init_weights:
+            self._initialize_weights()
 
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = x.view(-1, 16 * 5 * 5)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
         return x
+
+    def _initialize_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2. / n))
+                if m.bias is not None:
+                    m.bias.data.zero_()
+            elif isinstance(m, nn.Linear):
+                m.weight.data.normal_(0, 0.01)
+                m.bias.data.zero_()
 
 @timeit
 def run_model(train, num_epochs=2):
     # Create data loaders
-    train_loader = DataLoader(train, batch_size=4, shuffle=True, num_workers=2)
+    train_loader = DataLoader(train, batch_size=32, shuffle=True, num_workers=4)
 
     # Define the network
     net = Net()
@@ -65,7 +101,7 @@ def run_model(train, num_epochs=2):
         net = net.cuda()
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    optimizer = optim.SGD(net.parameters(), lr=1e-2, momentum=9e-1)
 
     for epoch in range(num_epochs):
         running_loss = 0.0
@@ -83,15 +119,15 @@ def run_model(train, num_epochs=2):
             optimizer.step()
 
             running_loss += loss.data[0]
-            if i % 1000 == 999:
-                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 1000}')
+            if i % 200 == 199:
+                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 200}')
                 running_loss = 0.0
 
     print('Finished Training')
     return net
 
 def compute_results(test, net):
-    test_loader = DataLoader(test, batch_size=4, shuffle=False, num_workers=2)
+    test_loader = DataLoader(test, batch_size=32, shuffle=False, num_workers=4)
     classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
     correct = 0
     total = 0
@@ -115,7 +151,7 @@ def compute_results(test, net):
         outputs = net(imgs)
         _, preds = torch.max(outputs.data.cpu(), dim=1)
         c = preds == labels
-        for i in range(4):
+        for i in range(32):
             label = labels[i]
             class_total[label] += 1
             class_correct[label] += c[i]
