@@ -131,7 +131,7 @@ def run_model(train, num_epochs=5):
 
             running_loss += loss.data[0]
             if i % 25 == 24:
-                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 24}')
+                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 25}')
                 running_loss = 0.0
 
     print('Finished Training')
