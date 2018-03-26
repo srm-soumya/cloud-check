@@ -130,15 +130,15 @@ def run_model(train, num_epochs=5):
             optimizer.step()
 
             running_loss += loss.data[0]
-            if i % 100 == 99:
-                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 100}')
+            if i % 50 == 49:
+                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 50}')
                 running_loss = 0.0
 
     print('Finished Training')
     return net
 
 def compute_results(test, net):
-    test_loader = DataLoader(test, batch_size=64, shuffle=False, num_workers=4)
+    test_loader = DataLoader(test, batch_size=128, shuffle=False, num_workers=4)
     classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
     correct = 0
     total = 0
@@ -151,28 +151,7 @@ def compute_results(test, net):
         total += labels.size(0)
         correct += (preds == labels).sum()
 
-    print(f'Overall Accuracy: {correct / total}\n\n')
-
-    class_correct = list(0.0 for i in range(10))
-    class_total = list(0.0 for i in range(10))
-
-    # for data in test_loader:
-    #     imgs, labels = data
-    #     imgs = Variable(imgs.cuda()) if gpu else Variable(imgs)
-    #     outputs = net(imgs)
-    #     _, preds = torch.max(outputs.data.cpu(), dim=1)
-    #     c = preds == labels
-    #     try:
-    #         for i in range(128):
-    #             label = labels[i]
-    #             class_total[label] += 1
-    #             class_correct[label] += c[i]
-    #     except IndexError as e:
-    #         pass
-
-    # for i in range(10):
-    #     print(f'Class: {classes[i]}, Score: {class_correct[i]/class_total[i]}')
-
+    print(f'Overall Accuracy: {correct / total}')
 
 def main():
     train, test = download_data()
