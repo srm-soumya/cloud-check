@@ -104,7 +104,7 @@ class Net(nn.Module):
 @timeit
 def run_model(train, num_epochs=5):
     # Create data loaders
-    train_loader = DataLoader(train, batch_size=128, shuffle=True, num_workers=4)
+    train_loader = DataLoader(train, batch_size=256, shuffle=True, num_workers=4)
 
     # Define the network
     net = Net()
@@ -112,7 +112,7 @@ def run_model(train, num_epochs=5):
         net = net.cuda()
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.05, momentum=0.9, weight_decay=5e-4)
+    optimizer = optim.SGD(net.parameters(), lr=0.1, momentum=0.9, weight_decay=5e-4)
 
     for epoch in range(num_epochs):
         running_loss = 0.0
@@ -130,8 +130,8 @@ def run_model(train, num_epochs=5):
             optimizer.step()
 
             running_loss += loss.data[0]
-            if i % 50 == 49:
-                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 50}')
+            if i % 25 == 24:
+                print(f'Epoch: {epoch+1}, MB: {i+1}, Loss: {running_loss / 24}')
                 running_loss = 0.0
 
     print('Finished Training')
@@ -155,7 +155,7 @@ def compute_results(test, net):
 
 def main():
     train, test = download_data()
-    net = run_model(train, 2)
+    net = run_model(train)
     compute_results(test, net)
 
 
