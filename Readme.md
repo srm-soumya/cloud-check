@@ -1,9 +1,9 @@
 ## What is Deep Learning?
 
 Deep Learning(DL) is a new branch of Machine Learning which is based on the concept of Neural Networks(NN).
-Although NNs have been there since 1950s, the recent advancement with GPU based Infrastructure and availability of
+Although NNs have been there since the 1950s, the recent advancement with GPU based Infrastructure and availability of
 large datasets is what lead to the boom of DL Applications. We can see their implementation in day-to-day application like
-Facebook Auto Image Tags, Siri, Google Translate, Self driving cars etc. DL has brought us a step closer to the ambition of
+Facebook Auto Image Tags, Siri, Google Translate, Self-driving cars etc. DL has brought us a step closer to the ambition of
 achieving near human intelligence for machines.
 
 
@@ -13,10 +13,10 @@ achieving near human intelligence for machines.
 as a part of it's AI Labs Initiative.
 
 We started with a team of 3 people, experimenting with different DL techniques and trying to build
-models that could solve real world problems. We have worked on a variety of different problems like Image Classification, Object Detection in Videos, Facial Recognition etc. During this process, we got a chance to work with different size of datasets ranging from 1-2 GB to 200-300 GB. Since the team is growing and the intent is to make DL as a practice in the organization, we thought of deciding on the infrastructure that will help us in:
+models that could solve real-world problems. We have worked on a variety of different problems like Image Classification, Object Detection in Videos, Facial Recognition etc. During this process, we got a chance to work with the different size of datasets ranging from 1-2 GB to 200-300 GB. Since the team is growing and the intent is to make DL as a practice in the organization, we thought of deciding on the infrastructure that will help us in:
 - Training more people to start doing DL
 - Experimenting with different kinds of DL problems and build prototype models for use
-- Building production ready models for clients
+- Building production-ready models for clients
 - Providing API's or building Web Applications on top of the model
 
 
@@ -65,22 +65,22 @@ We will evaluate different cloud providers based on:
 | AWS            | US-East    | 1 K80   | ami-005a6c65, p2.xlarge, HDD  |            1431 |       $0.90 |      $0.36 |
 
 #### Paperspace
-From the experiment results Paperspace looks like the most viable option, with Cost / run 2.5x times compared to the
-second best. However, it took me 4-5 attempts to ssh into the VM and also everytime you create a new VM for
-experimentaion you have to pay an extra cost of atleast $5 for storage.
+From the experiment results, Paperspace looks like the most viable option, with Cost/run 2.5x times compared to the
+second best. However, it took me 4-5 attempts to ssh into the VM and also every time you create a new VM for
+experimentation you have to pay an extra cost of at least $5 for storage.
 
 #### Microsoft Azure
-Azure comes with Data Science Virual Machines (DSVMs) which is a pre-configured Virtual Machine for ML and DL workflows.
+Azure comes with Data Science Virtual Machines (DSVMs) which is a pre-configured Virtual Machine for ML and DL workflows.
 It is very easy to set up and start working on these machines. Among the major cloud providers, Azure NC6v2 DSVM with P100 GPUs
 seems to be the best alternative. However, most of our time is spent in experimenting with the different models rather than training
-production ready deep learning models, so we are looking for options where Cost / hour is the cheapest.
+production ready deep learning models, so we are looking for options where Cost/hour is the cheapest.
 
 #### Google Compute Engine
-GCE doesnot come with any pre-configured VMs for DL workflow, so we had to start a vanilla Ubuntu 16.04 server and installed
-the required binaries and libraries for the experiment. Although the Cost / run is comparatively high for GCE compared to Azure & AWS,
-it seems to be the chepeast solution available out there, which is good for team members to experiment and learn.
+GCE doesn't come with any pre-configured VMs for DL workflow, so we had to start a vanilla Ubuntu 16.04 server and installed
+the required binaries and libraries for the experiment. Although the Cost/run is comparatively high for GCE compared to Azure & AWS,
+it seems to be the cheapest solution available out there, which is good for team members to experiment and learn.
 
-Based on the above considerations, we have decided to use GCE for experimentaion and Azure NC_v2 series machines for
+Based on the above considerations, we have decided to use GCE for experimentation and Azure NC_v2 series machines for
 training larger models.
 
 ## Further Consideration:
@@ -89,4 +89,3 @@ Google has now come up with [Google Colaboratory](https://colab.research.google.
 Azure, GCE, AWS are also adding latest Nvidia GPUs rapidly, will keep an eye on them and update the results based on that.
 
 We at Gramener are also planning to purchase a few Gaming laptops and start building on them, will evaluate and publish the results as and when I get my hands dirty on them.
-
