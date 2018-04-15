@@ -30,10 +30,11 @@ does not suit our model of development.
 
 *Problem*: Build a CNN model to classify Images for the [CIFAR10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html).
 
-# Choices
-Dataset: **CIFAR10** => Small enough to be treated as an experimental dataset.
-Framework: **PyTorch** => Is more pythonic compared to other DL frameworks, is available as a beta release.
-CNN Model: **VGG16** => Intuitive to understand
+## Choices
+
+- Dataset: **CIFAR10** => Small enough to be treated as an experimental dataset.
+- Framework: **PyTorch** => Is more pythonic compared to other DL frameworks, is available as a beta release.
+- CNN Model: **VGG16** => Intuitive to understand
 
 Trained the VGG16 Model for *5 Epochs* (Random choice), which gives an accuracy in the range of *55%-65%* which
 is decent compared to the base accuracy of 10%.
