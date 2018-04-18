@@ -3,6 +3,7 @@
 Deep Learning(DL) is a branch of Machine Learning which tries to mimic the architecture of neurons in human brain and
 calls them Artifical Neural Networks(ANN). Although ANNs have been there since the 1950s, the recent advancement with GPU based Infrastructure and availability of large datasets is what lead to the boom of DL Applications. We can see their implementation in day-to-day application like Facebook Auto Image Tags, Siri, Google Translate, Self-driving cars etc. DL has brought us a step closer to the ambition of achieving near human intelligence for machines.
 
+![Deep Learning](imgs/one.png)
 
 ## Deep Learning at Gramener
 
@@ -24,6 +25,8 @@ Keeping the above points in mind, we thought of evaluating these 4 Cloud Provide
 
 Although there are a few other vendors in the market like *FloydHub*, *ClusterOne* & *Crestle*, their DL workflow
 does not suit our model of development.
+
+![GPU Infrastructure](imgs/two.jpeg)
 
 *Problem*: Build a CNN model to classify Images for the [CIFAR10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html).
 
@@ -74,8 +77,7 @@ production ready deep learning models, so we are looking for options where Cost/
 
 #### Google Compute Engine
 GCE doesn't come with any pre-configured VMs for DL workflow, so we had to start a vanilla Ubuntu 16.04 server and installed
-the required binaries and libraries for the experiment. Although the Cost/run is comparatively high for GCE compared to Azure & AWS,
-it seems to be the cheapest solution available out there, which is good for team members to experiment and learn.
+the required binaries and libraries for the experiment. Although the Cost/run is comparatively high for GCE compared to Azure & AWS, it seems to be the cheapest solution available out there, which is good for team members to experiment and learn.
 
 Based on the above considerations, we have decided to use GCE for experimentation and Azure NC_v2 series machines for
 training larger models.
