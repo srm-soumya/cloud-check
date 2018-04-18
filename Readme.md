@@ -1,10 +1,7 @@
 ## What is Deep Learning?
 
-Deep Learning(DL) is a new branch of Machine Learning which is based on the concept of Neural Networks(NN).
-Although NNs have been there since the 1950s, the recent advancement with GPU based Infrastructure and availability of
-large datasets is what lead to the boom of DL Applications. We can see their implementation in day-to-day application like
-Facebook Auto Image Tags, Siri, Google Translate, Self-driving cars etc. DL has brought us a step closer to the ambition of
-achieving near human intelligence for machines.
+Deep Learning(DL) is a branch of Machine Learning which tries to mimic the architecture of neurons in human brain and
+calls them Artifical Neural Networks(ANN). Although ANNs have been there since the 1950s, the recent advancement with GPU based Infrastructure and availability of large datasets is what lead to the boom of DL Applications. We can see their implementation in day-to-day application like Facebook Auto Image Tags, Siri, Google Translate, Self-driving cars etc. DL has brought us a step closer to the ambition of achieving near human intelligence for machines.
 
 
 ## Deep Learning at Gramener
@@ -13,10 +10,10 @@ achieving near human intelligence for machines.
 as a part of it's AI Labs Initiative.
 
 We started with a team of 3 people, experimenting with different DL techniques and trying to build
-models that could solve real-world problems. We have worked on a variety of different problems like Image Classification, Object Detection in Videos, Facial Recognition etc. During this process, we got a chance to work with the different size of datasets ranging from 1-2 GB to 200-300 GB. Since the team is growing and the intent is to make DL as a practice in the organization, we thought of deciding on the infrastructure that will help us in:
-- Training more people to start doing DL
+models that could solve real-world problems. We have worked on a variety of problems like Image Classification, Object Detection in Videos, Facial Recognition etc. During this process, we got a chance to work with the different size of datasets ranging from 1-2 GB to 200-300 GB. Since the team is growing and the intent is to make DL as a practice in the organization, we thought of deciding on the infrastructure that will help us in:
+- Training more people to work on DL Initiatives/Projects
 - Experimenting with different kinds of DL problems and build prototype models for use
-- Building production-ready models for clients
+- Building pre-trained consumable models for client business needs
 - Providing API's or building Web Applications on top of the model
 
 
