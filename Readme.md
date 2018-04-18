@@ -82,6 +82,8 @@ the required binaries and libraries for the experiment. Although the Cost/run is
 Based on the above considerations, we have decided to use GCE for experimentation and Azure NC_v2 series machines for
 training larger models.
 
+![Save Cost](imgs/three.jpg)
+
 ## Further Consideration:
 Google has now come up with [Google Colaboratory](https://colab.research.google.com/), which allows anyone to start experimenting with DL models, giving free 12 hours of usage of Tesla K80 GPUs at a stretch. It is one of the best possible options available for people coming into DL field and who don't want to invest much on the infrastructure initially.
 
