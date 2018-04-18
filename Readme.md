@@ -4,6 +4,7 @@ Deep Learning(DL) is a branch of Machine Learning which tries to mimic the archi
 calls them Artifical Neural Networks(ANN). Although ANNs have been there since the 1950s, the recent advancement with GPU based Infrastructure and availability of large datasets is what lead to the boom of DL Applications. We can see their implementation in day-to-day application like Facebook Auto Image Tags, Siri, Google Translate, Self-driving cars etc. DL has brought us a step closer to the ambition of achieving near human intelligence for machines.
 
 ![Deep Learning](imgs/one.png)
+Source: *Nvidia*
 
 ## Deep Learning at Gramener
 
