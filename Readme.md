@@ -64,6 +64,7 @@ We will evaluate different cloud providers based on:
 | GCE            | US-West-1b | 1 K80   | Ubuntu 16.04 with SSD 30 GB   |            1461 |       $0.58 |      $0.24 |
 | Azure          | US-East    | 1 K80   | DSVM Ubuntu: NC6 Standard HDD |            1428 |       $0.92 |      $0.36 |
 | AWS            | US-East    | 1 K80   | ami-005a6c65, p2.xlarge, HDD  |            1431 |       $0.90 |      $0.36 |
+| Acer Predator  | Laptop     | 1 1070  | Ubuntu 16.04 with SSD 256 GB  |             331 |       -     |      -     |
 
 #### Paperspace
 From the experiment results, Paperspace looks like the most viable option, with Cost/run 2.5x times compared to the
